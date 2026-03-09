@@ -32,14 +32,14 @@ const displayIssues = (issues, status) => {
     issuesContainer.innerHTML = '';
 
     issues.forEach(issue => {
-        if(status === 'all'){
+        if(status === 'all' || issue.status === status){
             const issueDiv = document.createElement('div');
             issueDiv.innerHTML = `
                 <!-- card  -->
             <div class="h-full flex flex-col justify-between rounded-md bg-base-100 shadow border-t-4 border-t-[${borderColor(issue.status)}] transition-all hover:scale-101">
                 <div class="p-4 space-y-3">
                     <div class="flex justify-between">
-                        <div><img src="./assets/${issue.status}-Status.png"></div>
+                        <div><img src="./assets/${issue.status.charAt(0).toUpperCase() + issue.status.slice(1)}-Status.png"></div>
                         <p class="w-fit px-8 py-2 rounded-full bg-[#FEECEC] text-[#EF4444] text-xs font-medium">${issue.priority.toUpperCase()}</p>
                     </div>
                     
@@ -79,9 +79,6 @@ const displayIssues = (issues, status) => {
 
             issuesContainer.append(issueDiv);
             console.log(issue.labels)
-            return;
-        }
-        if(issue.status === status){
         }
     })
     
@@ -96,3 +93,6 @@ const borderColor = (status) => {
         return "#A855F7";
     }
 }
+
+// Initial load
+loadCommits('all');

@@ -19,5 +19,5 @@ document.getElementById('sign-in-btn').addEventListener('click', () => {
     }
 
     alert("Login Successful");
-    return window.location.href = "../main.html";
+    return window.location.href = "main.html";
 });
